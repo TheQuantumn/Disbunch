@@ -1,0 +1,47 @@
+body {
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(to right, #ffffff, #000000); /* Background gradient */
+    font-family: 'Arial', sans-serif;
+    color: #ffcc00; /* Text color (yellow) */
+}
+
+.container {
+    text-align: center;
+    padding: 100px;
+}
+
+.logo {
+    width: 100px;
+    height: 100px;
+}
+
+h1 {
+    font-size: 2.5em;
+    color: #ffcc00; /* Yellow */
+}
+
+p {
+    font-size: 1.2em;
+}
+
+.buttons {
+    margin-top: 20px;
+}
+
+.button {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 1em;
+    text-decoration: none;
+    color: #ffcc00; /* Yellow */
+    border: 2px solid #ffcc00; /* Yellow border */
+    background: #000000; /* Black background */
+    transition: all 0.3s ease;
+}
+
+.button:hover {
+    background: none;
+    color: #000000; /* Black on hover */
+    box-shadow: 0 0 20px #ffcc00; /* Yellow glow on hover */
+}

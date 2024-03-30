@@ -1,0 +1,148 @@
+<div class="container">
+    <h1>Students Table</h1>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to right, #ffcc00, #1a1a1a); /* Background gradient (yellow to black) */
+            font-family: 'Arial', sans-serif;
+            color: #fff; /* Text color (white) */
+            overflow-x: hidden; /* Hide horizontal scrollbar */
+        }
+    
+        .container {
+            text-align: center;
+            padding: 100px;
+        }
+    
+        h1 {
+            font-size: 2.5em;
+            color: #000; /* Black */
+            margin-bottom: 20px;
+            position: relative;
+            animation: fadeInUp 1s ease-in-out; /* Add animation */
+        }
+    
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1); /* Add shadow for aesthetic */
+        }
+    
+        th, td {
+            border: 1px solid #ffcc00; /* Yellow border */
+            padding: 10px;
+            text-align: left;
+        }
+    
+        th {
+            background-color: #ffcc00; /* Yellow background for header */
+            color: #000; /* Black text */
+        }
+    
+        tr:nth-child(even) {
+            background-color: #fff;
+            color:#000; /* White background for even rows */
+        }
+    
+        tr:nth-child(odd) {
+            background-color: #1a1a1a; /* Black background for odd rows */
+        }
+    
+        .buttons {
+            margin-top: 20px;
+        }
+    
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            font-size: 1em;
+            text-decoration: none;
+            color: #000; /* Black text */
+            border: 2px solid #ffcc00; /* Yellow border */
+            background: #ffcc00; /* Yellow background */
+            transition: all 0.3s ease;
+        }
+    
+        .button:hover {
+            background: none;
+            color: #ffcc00; /* Yellow text on hover */
+            box-shadow: 0 0 20px #ffcc00; /* Yellow glow on hover */
+        }
+        #background-video {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            object-fit: cover;
+            z-index: -1;
+        }
+    
+        @keyframes fadeInUp {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+    
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+            
+        }
+    </style>
+    
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Age</th>
+                <th>Name</th>
+                <th>Student ID</th>
+                <th>Year</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php
+            // Include the database configuration file
+            include('db.php');
+
+            // Your SQL query
+            $sql = "SELECT * FROM students";
+
+            // Perform the query
+            $result = $conn->query($sql);
+
+            // Check if the query was successful
+            if ($result === false) {
+                die("Query failed: " . $conn->error);
+            }
+
+            // Fetch and display the results
+            while ($row = $result->fetch_assoc()) {
+                echo "<tr>";
+                echo "<td>" . $row["age"] . "</td>";
+                echo "<td>" . $row["name"] . "</td>";
+                echo "<td>" . $row["student_id"] . "</td>";
+                echo "<td>" . $row["year"] . "</td>";
+                echo "<td>" . ($row["status"] == 1 ? 'Active' : 'Inactive') . "</td>";
+                echo "</tr>";
+            }
+
+            // Close the database connection
+            $conn->close();
+            ?>
+        </tbody>
+    </table>
+</div>
+<video autoplay muted loop id="background-video">
+    <source src="1.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+</video>
+
+<div class="buttons">
+   <center> <a href="index.php" class="button">Go Back</a></center>
+   
+</div>
